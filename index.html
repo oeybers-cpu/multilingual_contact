@@ -316,6 +316,108 @@
         .language-indicator .language-name {
             font-weight: 500;
         }
+        
+        .case-study {
+            background: #f0f7ff;
+            border-left: 4px solid #1e88e5;
+            padding: 15px;
+            border-radius: 0 6px 6px 0;
+            margin: 15px 0;
+        }
+        
+        .case-study h4 {
+            color: #1e88e5;
+            margin-bottom: 8px;
+        }
+        
+        .tech-highlight {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            border-radius: 0 6px 6px 0;
+            margin: 15px 0;
+        }
+        
+        .tech-highlight h4 {
+            color: #4caf50;
+            margin-bottom: 8px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .comparison-table th {
+            background-color: #f2f2f2;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .language-profile {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .language-card {
+            flex: 1;
+            min-width: 250px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #e0e6ed;
+        }
+        
+        .language-card h4 {
+            color: #00008B;
+            margin-bottom: 10px;
+        }
+        
+        .language-card .language-name {
+            font-weight: bold;
+            color: #00008B;
+            margin-bottom: 5px;
+        }
+        
+        .language-card .language-family {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        
+        .language-card .language-status {
+            background: #e3f2fd;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+        
+        .language-card .language-status.official {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+        
+        .language-card .language-status.endangered {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .language-card .language-status.majestic {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
     </style>
 </head>
 <body>
@@ -340,6 +442,12 @@
             </button>
             <button class="tab" onclick="showSection('summary')">
                 <span class="icon">📝</span> Summary
+            </button>
+            <button class="tab" onclick="showSection('ethnic-minority')">
+                <span class="icon">👥</span> Ethnic Minority Language Learning
+            </button>
+            <button class="tab" onclick="showSection('technology')">
+                <span class="icon">💻</span> Technology and Multilingualism
             </button>
             <div class="multilingual-tip" style="margin-top: 20px; padding: 15px;">
                 <h4>Multilingual Note-Taking Tip</h4>
@@ -371,16 +479,28 @@
                 </div>
                 
                 <div class="notes-section">
-                    <h3>Notes for Cognitive Benefits</h3>
-                    <textarea id="cognitive-notes" class="note-textarea" placeholder="Type your notes in any language..."></textarea>
-                    <div class="language-indicator">
-                        <span class="flag" style="background: #f0f0f0;"></span>
-                        <span class="language-name" id="cognitive-language">Language: Detecting...</span>
+                    <div class="lang-selector-container">
+                        <div class="language-selector">
+                            <button class="lang-btn active" data-lang="en">English</button>
+                            <button class="lang-btn" data-lang="es">Español</button>
+                            <button class="lang-btn" data-lang="fr">Français</button>
+                            <button class="lang-btn" data-lang="zh">中文</button>
+                            <button class="lang-btn" data-lang="ar">العربية</button>
+                            <button class="lang-btn" data-lang="ru">Русский</button>
+                        </div>
                     </div>
+                    <h3>Notes for Cognitive Benefits</h3>
+                    <textarea id="cognitive-notes-en" class="note-textarea" placeholder="Type your notes in any language..."></textarea>
+                    <textarea id="cognitive-notes-es" class="note-textarea hidden" placeholder="Escribe tus notas en cualquier idioma..."></textarea>
+                    <textarea id="cognitive-notes-fr" class="note-textarea hidden" placeholder="Écrivez vos notes dans n'importe quelle langue..."></textarea>
+                    <textarea id="cognitive-notes-zh" class="note-textarea hidden" placeholder="用任何语言记笔记..."></textarea>
+                    <textarea id="cognitive-notes-ar" class="note-textarea hidden" placeholder="اكتب ملاحظاتك بأي لغة..."></textarea>
+                    <textarea id="cognitive-notes-ru" class="note-textarea hidden" placeholder="Напишите свои заметки на любом языке..."></textarea>
+                    
                     <div class="note-controls">
-                        <button class="note-btn save-btn" data-section="cognitive">Save Notes</button>
-                        <button class="note-btn download-btn" data-section="cognitive">Download Notes</button>
-                        <button class="note-btn clear-btn" data-section="cognitive">Clear Notes</button>
+                        <button class="note-btn save-btn" data-section="cognitive" data-lang="en">Save Notes</button>
+                        <button class="note-btn download-btn" data-section="cognitive" data-lang="en">Download Notes</button>
+                        <button class="note-btn clear-btn" data-section="cognitive" data-lang="en">Clear Notes</button>
                     </div>
                 </div>
             </div>
@@ -407,16 +527,28 @@
                 </div>
                 
                 <div class="notes-section">
-                    <h3>Notes for Cross-Cultural Communication</h3>
-                    <textarea id="cross-cultural-notes" class="note-textarea" placeholder="Type your notes in any language..."></textarea>
-                    <div class="language-indicator">
-                        <span class="flag" style="background: #f0f0f0;"></span>
-                        <span class="language-name" id="cross-cultural-language">Language: Detecting...</span>
+                    <div class="lang-selector-container">
+                        <div class="language-selector">
+                            <button class="lang-btn active" data-lang="en">English</button>
+                            <button class="lang-btn" data-lang="es">Español</button>
+                            <button class="lang-btn" data-lang="fr">Français</button>
+                            <button class="lang-btn" data-lang="zh">中文</button>
+                            <button class="lang-btn" data-lang="ar">العربية</button>
+                            <button class="lang-btn" data-lang="ru">Русский</button>
+                        </div>
                     </div>
+                    <h3>Notes for Cross-Cultural Communication</h3>
+                    <textarea id="cross-cultural-notes-en" class="note-textarea" placeholder="Type your notes in any language..."></textarea>
+                    <textarea id="cross-cultural-notes-es" class="note-textarea hidden" placeholder="Escribe tus notas en cualquier idioma..."></textarea>
+                    <textarea id="cross-cultural-notes-fr" class="note-textarea hidden" placeholder="Écrivez vos notes dans n'importe quelle langue..."></textarea>
+                    <textarea id="cross-cultural-notes-zh" class="note-textarea hidden" placeholder="用任何语言记笔记..."></textarea>
+                    <textarea id="cross-cultural-notes-ar" class="note-textarea hidden" placeholder="اكتب ملاحظاتك بأي لغة..."></textarea>
+                    <textarea id="cross-cultural-notes-ru" class="note-textarea hidden" placeholder="Напишите свои заметки на любом языке..."></textarea>
+                    
                     <div class="note-controls">
-                        <button class="note-btn save-btn" data-section="cross-cultural">Save Notes</button>
-                        <button class="note-btn download-btn" data-section="cross-cultural">Download Notes</button>
-                        <button class="note-btn clear-btn" data-section="cross-cultural">Clear Notes</button>
+                        <button class="note-btn save-btn" data-section="cross-cultural" data-lang="en">Save Notes</button>
+                        <button class="note-btn download-btn" data-section="cross-cultural" data-lang="en">Download Notes</button>
+                        <button class="note-btn clear-btn" data-section="cross-cultural" data-lang="en">Clear Notes</button>
                     </div>
                 </div>
             </div>
@@ -443,16 +575,28 @@
                 </div>
                 
                 <div class="notes-section">
-                    <h3>Notes for Sociocultural Relevance</h3>
-                    <textarea id="sociocultural-notes" class="note-textarea" placeholder="Type your notes in any language..."></textarea>
-                    <div class="language-indicator">
-                        <span class="flag" style="background: #f0f0f0;"></span>
-                        <span class="language-name" id="sociocultural-language">Language: Detecting...</span>
+                    <div class="lang-selector-container">
+                        <div class="language-selector">
+                            <button class="lang-btn active" data-lang="en">English</button>
+                            <button class="lang-btn" data-lang="es">Español</button>
+                            <button class="lang-btn" data-lang="fr">Français</button>
+                            <button class="lang-btn" data-lang="zh">中文</button>
+                            <button class="lang-btn" data-lang="ar">العربية</button>
+                            <button class="lang-btn" data-lang="ru">Русский</button>
+                        </div>
                     </div>
+                    <h3>Notes for Sociocultural Relevance</h3>
+                    <textarea id="sociocultural-notes-en" class="note-textarea" placeholder="Type your notes in any language..."></textarea>
+                    <textarea id="sociocultural-notes-es" class="note-textarea hidden" placeholder="Escribe tus notas en cualquier idioma..."></textarea>
+                    <textarea id="sociocultural-notes-fr" class="note-textarea hidden" placeholder="Écrivez vos notes dans n'importe quelle langue..."></textarea>
+                    <textarea id="sociocultural-notes-zh" class="note-textarea hidden" placeholder="用任何语言记笔记..."></textarea>
+                    <textarea id="sociocultural-notes-ar" class="note-textarea hidden" placeholder="اكتب ملاحظاتك بأي لغة..."></textarea>
+                    <textarea id="sociocultural-notes-ru" class="note-textarea hidden" placeholder="Напишите свои заметки на любом языке..."></textarea>
+                    
                     <div class="note-controls">
-                        <button class="note-btn save-btn" data-section="sociocultural">Save Notes</button>
-                        <button class="note-btn download-btn" data-section="sociocultural">Download Notes</button>
-                        <button class="note-btn clear-btn" data-section="sociocultural">Clear Notes</button>
+                        <button class="note-btn save-btn" data-section="sociocultural" data-lang="en">Save Notes</button>
+                        <button class="note-btn download-btn" data-section="sociocultural" data-lang="en">Download Notes</button>
+                        <button class="note-btn clear-btn" data-section="sociocultural" data-lang="en">Clear Notes</button>
                     </div>
                 </div>
             </div>
@@ -480,16 +624,28 @@
                 </div>
                 
                 <div class="notes-section">
-                    <h3>Notes for Educational Context</h3>
-                    <textarea id="education-notes" class="note-textarea" placeholder="Type your notes in any language..."></textarea>
-                    <div class="language-indicator">
-                        <span class="flag" style="background: #f0f0f0;"></span>
-                        <span class="language-name" id="education-language">Language: Detecting...</span>
+                    <div class="lang-selector-container">
+                        <div class="language-selector">
+                            <button class="lang-btn active" data-lang="en">English</button>
+                            <button class="lang-btn" data-lang="es">Español</button>
+                            <button class="lang-btn" data-lang="fr">Français</button>
+                            <button class="lang-btn" data-lang="zh">中文</button>
+                            <button class="lang-btn" data-lang="ar">العربية</button>
+                            <button class="lang-btn" data-lang="ru">Русский</button>
+                        </div>
                     </div>
+                    <h3>Notes for Educational Context</h3>
+                    <textarea id="education-notes-en" class="note-textarea" placeholder="Type your notes in any language..."></textarea>
+                    <textarea id="education-notes-es" class="note-textarea hidden" placeholder="Escribe tus notas en cualquier idioma..."></textarea>
+                    <textarea id="education-notes-fr" class="note-textarea hidden" placeholder="Écrivez vos notes dans n'importe quelle langue..."></textarea>
+                    <textarea id="education-notes-zh" class="note-textarea hidden" placeholder="用任何语言记笔记..."></textarea>
+                    <textarea id="education-notes-ar" class="note-textarea hidden" placeholder="اكتب ملاحظاتك بأي لغة..."></textarea>
+                    <textarea id="education-notes-ru" class="note-textarea hidden" placeholder="Напишите свои заметки на любом языке..."></textarea>
+                    
                     <div class="note-controls">
-                        <button class="note-btn save-btn" data-section="education">Save Notes</button>
-                        <button class="note-btn download-btn" data-section="education">Download Notes</button>
-                        <button class="note-btn clear-btn" data-section="education">Clear Notes</button>
+                        <button class="note-btn save-btn" data-section="education" data-lang="en">Save Notes</button>
+                        <button class="note-btn download-btn" data-section="education" data-lang="en">Download Notes</button>
+                        <button class="note-btn clear-btn" data-section="education" data-lang="en">Clear Notes</button>
                     </div>
                 </div>
             </div>
@@ -511,16 +667,243 @@
                 </div>
                 
                 <div class="notes-section">
-                    <h3>Notes for Summary</h3>
-                    <textarea id="summary-notes" class="note-textarea" placeholder="Type your notes in any language..."></textarea>
-                    <div class="language-indicator">
-                        <span class="flag" style="background: #f0f0f0;"></span>
-                        <span class="language-name" id="summary-language">Language: Detecting...</span>
+                    <div class="lang-selector-container">
+                        <div class="language-selector">
+                            <button class="lang-btn active" data-lang="en">English</button>
+                            <button class="lang-btn" data-lang="es">Español</button>
+                            <button class="lang-btn" data-lang="fr">Français</button>
+                            <button class="lang-btn" data-lang="zh">中文</button>
+                            <button class="lang-btn" data-lang="ar">العربية</button>
+                            <button class="lang-btn" data-lang="ru">Русский</button>
+                        </div>
                     </div>
+                    <h3>Notes for Summary</h3>
+                    <textarea id="summary-notes-en" class="note-textarea" placeholder="Type your notes in any language..."></textarea>
+                    <textarea id="summary-notes-es" class="note-textarea hidden" placeholder="Escribe tus notas en cualquier idioma..."></textarea>
+                    <textarea id="summary-notes-fr" class="note-textarea hidden" placeholder="Écrivez vos notes dans n'importe quelle langue..."></textarea>
+                    <textarea id="summary-notes-zh" class="note-textarea hidden" placeholder="用任何语言记笔记..."></textarea>
+                    <textarea id="summary-notes-ar" class="note-textarea hidden" placeholder="اكتب ملاحظاتك بأي لغة..."></textarea>
+                    <textarea id="summary-notes-ru" class="note-textarea hidden" placeholder="Напишите свои заметки на любом языке..."></textarea>
+                    
                     <div class="note-controls">
-                        <button class="note-btn save-btn" data-section="summary">Save Notes</button>
-                        <button class="note-btn download-btn" data-section="summary">Download Notes</button>
-                        <button class="note-btn clear-btn" data-section="summary">Clear Notes</button>
+                        <button class="note-btn save-btn" data-section="summary" data-lang="en">Save Notes</button>
+                        <button class="note-btn download-btn" data-section="summary" data-lang="en">Download Notes</button>
+                        <button class="note-btn clear-btn" data-section="summary" data-lang="en">Clear Notes</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="ethnic-minority" class="section">
+                <div class="section-title">
+                    <h2>Ethnic Minority Language Learning</h2>
+                    <div class="icon">👥</div>
+                </div>
+                
+                <div class="card">
+                    <p>Research shows that multilingual ethnic minority students demonstrate significant cognitive advantages while facing specific linguistic challenges in second language acquisition.</p>
+                </div>
+                
+                <div class="case-study">
+                    <h4>Case Study: H'mong and Tay Students in Vietnam</h4>
+                    <p>Compared to monolingual Kinh students, multilingual H'mong and Tay students exhibited:</p>
+                    <ul>
+                        <li><strong>Cognitive advantages:</strong> Higher working memory and cognitive flexibility scores</li>
+                        <li><strong>Linguistic challenges:</strong> Lower vocabulary size, syntactic knowledge, and phonological accuracy in English</li>
+                        <li><strong>Structural barriers:</strong> Significant differences between their native languages and English</li>
+                        <li><strong>Sociocultural factors:</strong> Limited access to resources, cultural identity preservation, and community influence</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Measure</th>
+                            <th>H'mong Students</th>
+                            <th>Tay Students</th>
+                            <th>Kinh (Vietnamese) Students</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Working Memory Score</td>
+                            <td>6.1</td>
+                            <td>6.8</td>
+                            <td>5.9</td>
+                        </tr>
+                        <tr>
+                            <td>Cognitive Flexibility Score</td>
+                            <td>87.4</td>
+                            <td>89.1</td>
+                            <td>82.3</td>
+                        </tr>
+                        <tr>
+                            <td>Vocabulary Size</td>
+                            <td>54</td>
+                            <td>60</td>
+                            <td>65</td>
+                        </tr>
+                        <tr>
+                            <td>Syntactic Knowledge</td>
+                            <td>23</td>
+                            <td>25</td>
+                            <td>27</td>
+                        </tr>
+                        <tr>
+                            <td>Phonological Accuracy</td>
+                            <td>67</td>
+                            <td>71</td>
+                            <td>76</td>
+                        </tr>
+                    </tbody>
+                </div>
+                
+                <div class="card key-insights">
+                    <h3>Key Insights</h3>
+                    <p>While multilingualism enhances cognitive abilities, ethnic minority students face unique linguistic challenges:</p>
+                    <ul>
+                        <li><span class="highlight-orange">Cognitive advantages:</span> Multilingual students show superior executive function, working memory, and cognitive flexibility compared to monolingual peers</li>
+                        <li><span class="highlight-orange">Linguistic challenges:</span> Structural differences between native languages and English create barriers in vocabulary acquisition, syntax, and phonology</li>
+                        <li><span class="highlight-orange">Sociocultural factors:</span> Limited resources, cultural identity preservation, and community attitudes significantly impact language learning outcomes</li>
+                        <li><span class="highlight-orange">Educational implications:</span> Targeted instructional support and culturally sensitive curricula are needed to bridge the gap in English language acquisition</li>
+                    </ul>
+                </div>
+                
+                <div class="language-profile">
+                    <div class="language-card">
+                        <div class="language-name">H'mong</div>
+                        <div class="language-family">Hmong-Mien language family</div>
+                        <div class="language-status endangered">Endangered status</div>
+                        <p>Tonal language with complex tone system</p>
+                        <p>Distinct from Vietnamese and English in syntax and phonology</p>
+                        <p>Strong cultural identity tied to language preservation</p>
+                    </div>
+                    
+                    <div class="language-card">
+                        <div class="language-name">Tay</div>
+                        <div class="language-family">Kra-Dai language family</div>
+                        <div class="language-status endangered">Endangered status</div>
+                        <p>Tonal language with complex tone system</p>
+                        <p>Shares some syntactic features with Vietnamese</p>
+                        <p>Greater exposure to Vietnamese than H'mong speakers</p>
+                    </div>
+                    
+                    <div class="language-card">
+                        <div class="language-name">Vietnamese</div>
+                        <div class="language-family">Austroasiatic language family</div>
+                        <div class="language-status official">Official language</div>
+                        <p>Tonal language with simpler tone system than H'mong/Tay</p>
+                        <p>More structural similarities to English than H'mong/Tay</p>
+                        <p>Primary language of instruction in Vietnamese schools</p>
+                    </div>
+                </div>
+                
+                <div class="notes-section">
+                    <div class="lang-selector-container">
+                        <div class="language-selector">
+                            <button class="lang-btn active" data-lang="en">English</button>
+                            <button class="lang-btn" data-lang="es">Español</button>
+                            <button class="lang-btn" data-lang="fr">Français</button>
+                            <button class="lang-btn" data-lang="zh">中文</button>
+                            <button class="lang-btn" data-lang="ar">العربية</button>
+                            <button class="lang-btn" data-lang="ru">Русский</button>
+                        </div>
+                    </div>
+                    <h3>Notes for Ethnic Minority Language Learning</h3>
+                    <textarea id="ethnic-minority-notes-en" class="note-textarea" placeholder="Type your notes in any language..."></textarea>
+                    <textarea id="ethnic-minority-notes-es" class="note-textarea hidden" placeholder="Escribe tus notas en cualquier idioma..."></textarea>
+                    <textarea id="ethnic-minority-notes-fr" class="note-textarea hidden" placeholder="Écrivez vos notes dans n'importe quelle langue..."></textarea>
+                    <textarea id="ethnic-minority-notes-zh" class="note-textarea hidden" placeholder="用任何语言记笔记..."></textarea>
+                    <textarea id="ethnic-minority-notes-ar" class="note-textarea hidden" placeholder="اكتب ملاحظاتك بأي لغة..."></textarea>
+                    <textarea id="ethnic-minority-notes-ru" class="note-textarea hidden" placeholder="Напишите свои заметки на любом языке..."></textarea>
+                    
+                    <div class="note-controls">
+                        <button class="note-btn save-btn" data-section="ethnic-minority" data-lang="en">Save Notes</button>
+                        <button class="note-btn download-btn" data-section="ethnic-minority" data-lang="en">Download Notes</button>
+                        <button class="note-btn clear-btn" data-section="ethnic-minority" data-lang="en">Clear Notes</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="technology" class="section">
+                <div class="section-title">
+                    <h2>Technology and Multilingualism</h2>
+                    <div class="icon">💻</div>
+                </div>
+                
+                <div class="card">
+                    <p>Technology can either preserve languages—or accelerate their disappearance. The right tools can help maintain linguistic diversity while the wrong approaches can widen inequalities.</p>
+                </div>
+                
+                <div class="tech-highlight">
+                    <h4>Technology's Role in Language Preservation</h4>
+                    <ul>
+                        <li><strong>Digital documentation:</strong> AI-powered tools for recording and archiving endangered languages</li>
+                        <li><strong>Speech recognition:</strong> Technology that processes minority and Indigenous languages</li>
+                        <li><strong>Translation tools:</strong> Making learning materials accessible in more languages</li>
+                        <li><strong>Living Dictionaries:</strong> Digital platforms for community-based language documentation</li>
+                        <li><strong>AI training:</strong> Developing models that process diverse languages beyond dominant ones</li>
+                    </ul>
+                </div>
+                
+                <div class="card key-insights">
+                    <h3>Key Challenges and Opportunities</h3>
+                    <p>Current landscape of language technology:</p>
+                    <ul>
+                        <li><span class="highlight-orange">90% of online content</span> is in just a few dominant languages (English, Chinese, Spanish, etc.)</li>
+                        <li><span class="highlight-orange">Most AI tools</span> are trained on less than 5% of the world's languages</li>
+                        <li><span class="highlight-orange">Language disappearance:</span> One language dies every two weeks on average</li>
+                        <li><span class="highlight-orange">Digital inequality:</span> Without inclusive technology, linguistic minorities face further marginalization</li>
+                    </ul>
+                </div>
+                
+                <div class="case-study">
+                    <h4>Case Study: Living Dictionaries</h4>
+                    <p>The Living Dictionaries project creates digital dictionaries for endangered languages, allowing communities to document and preserve their languages. Key features include:</p>
+                    <ul>
+                        <li>Community-driven content creation and curation</li>
+                        <li>Audio recordings of native speakers for pronunciation</li>
+                        <li>Mobile-friendly interface for on-the-go documentation</li>
+                        <li>Integration with machine translation for accessibility</li>
+                        <li>Offline functionality for remote communities</li>
+                    </ul>
+                    <p>These digital tools have helped preserve languages like Kaska (Canada), Tlingit (Alaska), and Nisga'a (British Columbia), with over 50 languages documented to date.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Future Directions for Language Technology</h3>
+                    <p>Key areas for development include:</p>
+                    <ul>
+                        <li><span class="highlight-orange">Inclusive AI:</span> Training language models on diverse language data</li>
+                        <li><span class="highlight-orange">Speech recognition:</span> Developing tools for tonal languages and languages with limited digital resources</li>
+                        <li><span class="highlight-orange">Educational apps:</span> Creating culturally appropriate language learning tools for minority communities</li>
+                        <li><span class="highlight-orange">Policy advocacy:</span> Promoting linguistic inclusion in technology development standards</li>
+                        <li><span class="highlight-orange">Community partnerships:</span> Ensuring technology serves community needs rather than imposing external solutions</li>
+                    </ul>
+                </div>
+                
+                <div class="notes-section">
+                    <div class="lang-selector-container">
+                        <div class="language-selector">
+                            <button class="lang-btn active" data-lang="en">English</button>
+                            <button class="lang-btn" data-lang="es">Español</button>
+                            <button class="lang-btn" data-lang="fr">Français</button>
+                            <button class="lang-btn" data-lang="zh">中文</button>
+                            <button class="lang-btn" data-lang="ar">العربية</button>
+                            <button class="lang-btn" data-lang="ru">Русский</button>
+                        </div>
+                    </div>
+                    <h3>Notes for Technology and Multilingualism</h3>
+                    <textarea id="technology-notes-en" class="note-textarea" placeholder="Type your notes in any language..."></textarea>
+                    <textarea id="technology-notes-es" class="note-textarea hidden" placeholder="Escribe tus notas en cualquier idioma..."></textarea>
+                    <textarea id="technology-notes-fr" class="note-textarea hidden" placeholder="Écrivez vos notes dans n'importe quelle langue..."></textarea>
+                    <textarea id="technology-notes-zh" class="note-textarea hidden" placeholder="用任何语言记笔记..."></textarea>
+                    <textarea id="technology-notes-ar" class="note-textarea hidden" placeholder="اكتب ملاحظاتك بأي لغة..."></textarea>
+                    <textarea id="technology-notes-ru" class="note-textarea hidden" placeholder="Напишите свои заметки на любом языке..."></textarea>
+                    
+                    <div class="note-controls">
+                        <button class="note-btn save-btn" data-section="technology" data-lang="en">Save Notes</button>
+                        <button class="note-btn download-btn" data-section="technology" data-lang="en">Download Notes</button>
+                        <button class="note-btn clear-btn" data-section="technology" data-lang="en">Clear Notes</button>
                     </div>
                 </div>
             </div>
@@ -700,7 +1083,7 @@
             loadNotesForSection(activeSection);
             
             // Add event listeners for all sections
-            const sections = ['cognitive', 'cross-cultural', 'sociocultural', 'education', 'summary'];
+            const sections = ['cognitive', 'cross-cultural', 'sociocultural', 'education', 'summary', 'ethnic-minority', 'technology'];
             sections.forEach(section => {
                 const textarea = document.getElementById(`${section}-notes`);
                 if (textarea) {
