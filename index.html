@@ -418,6 +418,39 @@
             background: #e3f2fd;
             color: #1976d2;
         }
+        
+        .menti-container {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-top: 25px;
+        }
+        
+        .menti-container h2 {
+            margin-bottom: 20px;
+        }
+        
+        .menti-iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menti-instructions {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #1976d2;
+        }
+        
+        .menti-instructions h3 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -448,6 +481,9 @@
             </button>
             <button class="tab" onclick="showSection('technology')">
                 <span class="icon">💻</span> Technology and Multilingualism
+            </button>
+            <button class="tab" onclick="showSection('share-ideas')">
+                <span class="icon">💬</span> Share ideas online
             </button>
             <div class="multilingual-tip" style="margin-top: 20px; padding: 15px;">
                 <h4>Multilingual Note-Taking Tip</h4>
@@ -907,6 +943,37 @@
                     </div>
                 </div>
             </div>
+            
+            <div id="share-ideas" class="section">
+                <div class="section-title">
+                    <h2>Share ideas online</h2>
+                    <div class="icon">💬</div>
+                </div>
+                
+                <div class="menti-container">
+                    <h2>Interactive Discussion</h2>
+                    <p>Join our live discussion on multilingualism and sociocultural linguistics! Share your thoughts, answer questions, and engage with fellow students and experts in real-time.</p>
+                    
+                    <div class="menti-iframe">
+                        <iframe src="https://www.menti.com/alh75bkjgrs7/embed" width="100%" height="600px" frameborder="0" allow="camera; microphone; clipboard-read; clipboard-write" allowfullscreen></iframe>
+                    </div>
+                    
+                    <div class="menti-instructions">
+                        <h3>How to participate</h3>
+                        <ul>
+                            <li>Click on any question to see the options</li>
+                            <li>Select your answer by clicking on the choice</li>
+                            <li>Watch the results update in real-time</li>
+                            <li>Participate in open-ended questions by typing your response</li>
+                            <li>Share your thoughts on multilingualism and its role in society</li>
+                        </ul>
+                    </div>
+                    
+                    <p style="margin-top: 20px; text-align: center; font-size: 0.9rem; color: #666;">
+                        This session is powered by Mentimeter. If you have any issues, please try refreshing the page or checking your internet connection.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -1083,7 +1150,7 @@
             loadNotesForSection(activeSection);
             
             // Add event listeners for all sections
-            const sections = ['cognitive', 'cross-cultural', 'sociocultural', 'education', 'summary', 'ethnic-minority', 'technology'];
+            const sections = ['cognitive', 'cross-cultural', 'sociocultural', 'education', 'summary', 'ethnic-minority', 'technology', 'share-ideas'];
             sections.forEach(section => {
                 const textarea = document.getElementById(`${section}-notes`);
                 if (textarea) {
