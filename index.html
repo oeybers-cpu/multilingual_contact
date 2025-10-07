@@ -1,1 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALS 863: Introduction to Sociocultural Linguistics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #f5f7fa;
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 25px 0;
+            background: linear-gradient(135deg, #00008B, #0000A0);
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            display: flex;
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .left-column {
+            width: 25%;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            min-height: 85vh;
+        }
+        
+        .right-column {
+            width: 75%;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .tab {
+            display: block;
+            padding: 15px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 8px;
+            text-align: left;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #444;
+            font-size: 1.1rem;
+            width: 100%;
+            text-align: left;
+            border: 1px solid #e0e6ed;
+        }
+        
+        .tab:hover {
+            background: #eef2f7;
+            transform: translateX(3px);
+        }
+        
+        .tab.active {
+            background: #00008B;
+            color: white;
+            font-weight: 600;
+            border-color: #00008B;
+            box-shadow: 0 2px 8px rgba(0, 0, 139, 0.3);
+        }
+        
+        .section {
+            display: none;
+            padding: 20px 0;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        h2 {
+            color: #00008B;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+            position: relative;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background: #FF8C00;
+        }
+        
+        .highlight-orange {
+            color: #FF8C00;
+            font-weight: 600;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #eef2f7;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .key-insights {
+            background: #e3f2fd;
+            border-left: 4px solid #00008B;
+        }
+        
+        .key-insights h3 {
+            color: #00008B;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #bbd0e8;
+        }
+        
+        .notes-section {
+            background: #f8f9fa;
+            border: 1px dashed #ced4da;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 25px;
+        }
+        
+        .notes-section h3 {
+            color: #00008B;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #00008B;
+            box-shadow: 0 0 0 3px rgba(0, 0, 139, 0.1);
+        }
+        
+        .note-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .note-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .save-btn {
+            background: #28a745;
+            color: white;
+        }
+        
+        .save-btn:hover {
+            background: #218838;
+        }
+        
+        .download-btn {
+            background: #00008B;
+            color: white;
+        }
+        
+        .download-btn:hover {
+            background: #000066;
+        }
+        
+        .clear-btn {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .clear-btn:hover {
+            background: #c82333;
+        }
+        
+        .multilingual-tip {
+            background: #fff8e6;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.95rem;
+        }
+        
+        .multilingual-tip h4 {
+            color: #e65100;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #666;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .left-column, .right-column {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .note-controls {
+                flex-direction: column;
+            }
+            
+            .note-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .section-title h2 {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .section-title .icon {
+            font-size: 1.5rem;
+            color: #00008B;
+        }
+        
+        .language-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .lang-btn {
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        
+        .lang-btn.active {
+            background: #00008B;
+            color: white;
+            border-color: #00008B;
+        }
+        
+        .lang-selector-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ALS 863: Introduction to Sociocultural Linguistics</h1>
+        <p>Exploring the Sociocultural Dimensions of Multilingualism</p>
+    </header>
+    
+    <div class="container">
+        <div class="left-column">
+            <button class="tab active" onclick="showSection('cognitive')">
+                <span class="icon">🧠</span> Cognitive Benefits
+            </button>
+            <button class="tab" onclick="showSection('cross-cultural')">
+                <span class="icon">🌍</span> Cross-Cultural Communication
+            </button>
+            <button class="tab" onclick="showSection('sociocultural')">
+                <span class="icon">🏛️</span> Sociocultural Relevance
+            </button>
+            <button class="tab" onclick="showSection('education')">
+                <span class="icon">🎓</span> Educational Context
+            </button>
+            <button class="tab" onclick="showSection('summary')">
+                <span class="icon">📝</span> Summary
+            </button>
+            <div class="multilingual-tip" style="margin-top: 20px; padding: 15px;">
+                <h4>Multilingual Note-Taking Tip</h4>
+                <p>Take notes in your preferred language! Our system supports multilingual notes. Use the language selector to switch between languages while taking notes.</p>
+            </div>
+        </div>
+        
+        <div class="right-column">
+            <div id="cognitive" class="section active">
+                <div class="section-title">
+                    <h2>Cognitive and Linguistic Benefits</h2>
+                    <div class="icon">🧠</div>
+                </div>
+                
+                <div class="card">
+                    <p>Multilingual individuals show <span class="highlight-orange">superior executive functioning</span>, <span class="highlight-orange">better attentional control</span>, and <span class="highlight-orange">enhanced working memory</span> due to the constant management of multiple language systems.</p>
+                    <p>This cognitive flexibility supports learning additional languages and recognizing complex linguistic patterns. The <span class="highlight-orange">multilingual brain</span> exhibits <span class="highlight-orange">neural plasticity</span> that influences how all known languages are processed, indicating a <span class="highlight-orange">highly interactive language system</span> rather than separate isolated ones.</p>
+                </div>
+                
+                <div class="card key-insights">
+                    <h3>Key Insights</h3>
+                    <p>Research shows that multilingualism provides cognitive benefits across the entire lifespan:</p>
+                    <ul>
+                        <li>Young bilingual infants demonstrate enhanced neural activity in brain areas involved in executive function</li>
+                        <li>Bilingual children show advantages in executive control tasks despite having lower receptive vocabulary</li>
+                        <li>Bilingualism may delay the onset of dementia symptoms by 4-5 years compared to monolinguals</li>
+                        <li>These benefits are observed regardless of socioeconomic status and age of acquisition</li>
+                    </ul>
+                </div>
+                
+                <div class="notes-section">
+                    <div class="lang-selector-container">
+                        <div class="language-selector">
+                            <button class="lang-btn active" data-lang="en">English</button>
+                            <button class="lang-btn" data-lang="es">Español</button>
+                            <button class="lang-btn" data-lang="fr">Français</button>
+                            <button class="lang-btn" data-lang="zh">中文</button>
+                            <button class="lang-btn" data-lang="ar">العربية</button>
+                            <button class="lang-btn" data-lang="ru">Русский</button>
+                        </div>
+                    </div>
+                    <h3>Notes for Cognitive Benefits</h3>
+                    <textarea id="cognitive-notes-en" class="note-textarea" placeholder="Take notes in English..."></textarea>
+                    <textarea id="cognitive-notes-es" class="note-textarea hidden" placeholder="Tomar notas en español..."></textarea>
+                    <textarea id="cognitive-notes-fr" class="note-textarea hidden" placeholder="Prendre des notes en français..."></textarea>
+                    <textarea id="cognitive-notes-zh" class="note-textarea hidden" placeholder="用中文记笔记..."></textarea>
+                    <textarea id="cognitive-notes-ar" class="note-textarea hidden" placeholder="خذ ملاحظات بالعربية..."></textarea>
+                    <textarea id="cognitive-notes-ru" class="note-textarea hidden" placeholder="Сделать заметки на русском..."></textarea>
+                    
+                    <div class="note-controls">
+                        <button class="note-btn save-btn" data-section="cognitive" data-lang="en">Save Notes</button>
+                        <button class="note-btn download-btn" data-section="cognitive" data-lang="en">Download Notes</button>
+                        <button class="note-btn clear-btn" data-section="cognitive" data-lang="en">Clear Notes</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="cross-cultural" class="section">
+                <div class="section-title">
+                    <h2>Cross-Cultural Communication and Social Significance</h2>
+                    <div class="icon">🌍</div>
+                </div>
+                
+                <div class="card">
+                    <p>Multilingualism promotes <span class="highlight-orange">cross-cultural understanding</span> and <span class="highlight-orange">communication</span> by broadening worldviews and fostering <span class="highlight-orange">empathy</span> and <span class="highlight-orange">respect</span> for diverse cultures.</p>
+                    <p>It allows individuals to engage meaningfully with people from different cultural and linguistic backgrounds, facilitating <span class="highlight-orange">social cohesion</span> and reducing barriers in multicultural settings. Being multilingual enhances <span class="highlight-orange">relational trust</span> and <span class="highlight-orange">cooperation</span> in both personal and professional environments.</p>
+                </div>
+                
+                <div class="card key-insights">
+                    <h3>Key Insights</h3>
+                    <p>Language is more than a communication tool—it's a lens through which we see the world:</p>
+                    <ul>
+                        <li>As George Lakoff noted, languages structure knowledge differently (e.g., Dyirbal language categorizes "women," "fire," and "dangerous things" together)</li>
+                        <li>Language reflects and possibly structures how we understand reality</li>
+                        <li>Multilingualism fosters openness to new learning and cultural perspectives</li>
+                    </ul>
+                </div>
+                
+                <div class="notes-section">
+                    <div class="lang-selector-container">
+                        <div class="language-selector">
+                            <button class="lang-btn active" data-lang="en">English</button>
+                            <button class="lang-btn" data-lang="es">Español</button>
+                            <button class="lang-btn" data-lang="fr">Français</button>
+                            <button class="lang-btn" data-lang="zh">中文</button>
+                            <button class="lang-btn" data-lang="ar">العربية</button>
+                            <button class="lang-btn" data-lang="ru">Русский</button>
+                        </div>
+                    </div>
+                    <h3>Notes for Cross-Cultural Communication</h3>
+                    <textarea id="cross-cultural-notes-en" class="note-textarea" placeholder="Take notes in English..."></textarea>
+                    <textarea id="cross-cultural-notes-es" class="note-textarea hidden" placeholder="Tomar notas en español..."></textarea>
+                    <textarea id="cross-cultural-notes-fr" class="note-textarea hidden" placeholder="Prendre des notes en français..."></textarea>
+                    <textarea id="cross-cultural-notes-zh" class="note-textarea hidden" placeholder="用中文记笔记..."></textarea>
+                    <textarea id="cross-cultural-notes-ar" class="note-textarea hidden" placeholder="خذ ملاحظات بالعربية..."></textarea>
+                    <textarea id="cross-cultural-notes-ru" class="note-textarea hidden" placeholder="Сделать заметки на русском..."></textarea>
+                    
+                    <div class="note-controls">
+                        <button class="note-btn save-btn" data-section="cross-cultural" data-lang="en">Save Notes</button>
+                        <button class="note-btn download-btn" data-section="cross-cultural" data-lang="en">Download Notes</button>
+                        <button class="note-btn clear-btn" data-section="cross-cultural" data-lang="en">Clear Notes</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="sociocultural" class="section">
+                <div class="section-title">
+                    <h2>Sociocultural and Educational Relevance</h2>
+                    <div class="icon">🏛️</div>
+                </div>
+                
+                <div class="card">
+                    <p>In sociocultural linguistic research, multilingualism is recognized as integral to <span class="highlight-orange">identity formation</span>, <span class="highlight-orange">power dynamics</span>, and <span class="highlight-orange">social inclusion</span>.</p>
+                    <p>It challenges <span class="highlight-orange">linguistic authoritarianism</span> by valuing diverse languages and cultural expressions, thus supporting <span class="highlight-orange">educational development</span>, especially in multilingual societies. Universities and educational institutions emphasize multilingualism as a norm that supports <span class="highlight-orange">literacy</span> and <span class="highlight-orange">cognitive growth</span> in diverse student populations.</p>
+                </div>
+                
+                <div class="card key-insights">
+                    <h3>Key Insights</h3>
+                    <p>Language is a human right and a powerful social force:</p>
+                    <ul>
+                        <li>The Universal Declaration of Linguistic Rights upholds the right to use one's own language without discrimination</li>
+                        <li>40% of people worldwide don't have access to education in their mother tongue</li>
+                        <li>Language diversity is crucial for preserving knowledge, identity, and human connection</li>
+                    </ul>
+                </div>
+                
+                <div class="notes-section">
+                    <div class="lang-selector-container">
+                        <div class="language-selector">
+                            <button class="lang-btn active" data-lang="en">English</button>
+                            <button class="lang-btn" data-lang="es">Español</button>
+                            <button class="lang-btn" data-lang="fr">Français</button>
+                            <button class="lang-btn" data-lang="zh">中文</button>
+                            <button class="lang-btn" data-lang="ar">العربية</button>
+                            <button class="lang-btn" data-lang="ru">Русский</button>
+                        </div>
+                    </div>
+                    <h3>Notes for Sociocultural Relevance</h3>
+                    <textarea id="sociocultural-notes-en" class="note-textarea" placeholder="Take notes in English..."></textarea>
+                    <textarea id="sociocultural-notes-es" class="note-textarea hidden" placeholder="Tomar notas en español..."></textarea>
+                    <textarea id="sociocultural-notes-fr" class="note-textarea hidden" placeholder="Prendre des notes en français..."></textarea>
+                    <textarea id="sociocultural-notes-zh" class="note-textarea hidden" placeholder="用中文记笔记..."></textarea>
+                    <textarea id="sociocultural-notes-ar" class="note-textarea hidden" placeholder="خذ ملاحظات بالعربية..."></textarea>
+                    <textarea id="sociocultural-notes-ru" class="note-textarea hidden" placeholder="Сделать заметки на русском..."></textarea>
+                    
+                    <div class="note-controls">
+                        <button class="note-btn save-btn" data-section="sociocultural" data-lang="en">Save Notes</button>
+                        <button class="note-btn download-btn" data-section="sociocultural" data-lang="en">Download Notes</button>
+                        <button class="note-btn clear-btn" data-section="sociocultural" data-lang="en">Clear Notes</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="education" class="section">
+                <div class="section-title">
+                    <h2>Multilingualism in Educational Contexts</h2>
+                    <div class="icon">🎓</div>
+                </div>
+                
+                <div class="card">
+                    <p>Multilingualism in education takes many forms depending on factors such as linguistic diversity, the aims of the educational program or the characteristics of the languages involved. In many contexts, schoolchildren have different home languages from those used at school.</p>
+                    <p>Multilingual education can be defined as "the use of two or more languages in education provided that schools aim at multilingualism and multiliteracy." It is inclusive education that acknowledges and promotes linguistic diversity.</p>
+                </div>
+                
+                <div class="card key-insights">
+                    <h3>Key Insights</h3>
+                    <p>Global trends in multilingual education:</p>
+                    <ul>
+                        <li>Many countries are moving toward trilingual education (e.g., English, majority language, and minority language)</li>
+                        <li>Mother-tongue-based multilingual education improves literacy and learning outcomes</li>
+                        <li>40% of people worldwide lack access to education in their home language</li>
+                        <li>Technology can help preserve endangered languages through digital tools and AI</li>
+                    </ul>
+                </div>
+                
+                <div class="notes-section">
+                    <div class="lang-selector-container">
+                        <div class="language-selector">
+                            <button class="lang-btn active" data-lang="en">English</button>
+                            <button class="lang-btn" data-lang="es">Español</button>
+                            <button class="lang-btn" data-lang="fr">Français</button>
+                            <button class="lang-btn" data-lang="zh">中文</button>
+                            <button class="lang-btn" data-lang="ar">العربية</button>
+                            <button class="lang-btn" data-lang="ru">Русский</button>
+                        </div>
+                    </div>
+                    <h3>Notes for Educational Context</h3>
+                    <textarea id="education-notes-en" class="note-textarea" placeholder="Take notes in English..."></textarea>
+                    <textarea id="education-notes-es" class="note-textarea hidden" placeholder="Tomar notas en español..."></textarea>
+                    <textarea id="education-notes-fr" class="note-textarea hidden" placeholder="Prendre des notes en français..."></textarea>
+                    <textarea id="education-notes-zh" class="note-textarea hidden" placeholder="用中文记笔记..."></textarea>
+                    <textarea id="education-notes-ar" class="note-textarea hidden" placeholder="خذ ملاحظات بالعربية..."></textarea>
+                    <textarea id="education-notes-ru" class="note-textarea hidden" placeholder="Сделать заметки на русском..."></textarea>
+                    
+                    <div class="note-controls">
+                        <button class="note-btn save-btn" data-section="education" data-lang="en">Save Notes</button>
+                        <button class="note-btn download-btn" data-section="education" data-lang="en">Download Notes</button>
+                        <button class="note-btn clear-btn" data-section="education" data-lang="en">Clear Notes</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="summary" class="section">
+                <div class="section-title">
+                    <h2>Summary</h2>
+                    <div class="icon">📝</div>
+                </div>
+                
+                <div class="card">
+                    <p>Multilingualism in sociocultural linguistics is significant because it enriches <span class="highlight-orange">cognitive capacities</span>, facilitates <span class="highlight-orange">intercultural communication</span>, promotes <span class="highlight-orange">social integration</span>, and challenges <span class="highlight-orange">monolingual paradigms</span>, making it a critical subject of study for understanding language, culture, and society.</p>
+                </div>
+                
+                <div class="card key-insights">
+                    <h3>Final Thoughts</h3>
+                    <p>Language is the bridge between the brain and society. It is both a unique human faculty and a social construct. Protecting linguistic diversity means protecting knowledge, identity, and human connection.</p>
+                    <p>As UNESCO emphasizes: "The real cost of not embracing multilingual education is higher dropout rates, lower literacy, and millions of children left behind because they're forced to learn in an unfamiliar language."</p>
+                </div>
+                
+                <div class="notes-section">
+                    <div class="lang-selector-container">
+                        <div class="language-selector">
+                            <button class="lang-btn active" data-lang="en">English</button>
+                            <button class="lang-btn" data-lang="es">Español</button>
+                            <button class="lang-btn" data-lang="fr">Français</button>
+                            <button class="lang-btn" data-lang="zh">中文</button>
+                            <button class="lang-btn" data-lang="ar">العربية</button>
+                            <button class="lang-btn" data-lang="ru">Русский</button>
+                        </div>
+                    </div>
+                    <h3>Notes for Summary</h3>
+                    <textarea id="summary-notes-en" class="note-textarea" placeholder="Take notes in English..."></textarea>
+                    <textarea id="summary-notes-es" class="note-textarea hidden" placeholder="Tomar notas en español..."></textarea>
+                    <textarea id="summary-notes-fr" class="note-textarea hidden" placeholder="Prendre des notes en français..."></textarea>
+                    <textarea id="summary-notes-zh" class="note-textarea hidden" placeholder="用中文记笔记..."></textarea>
+                    <textarea id="summary-notes-ar" class="note-textarea hidden" placeholder="خذ ملاحظات بالعربية..."></textarea>
+                    <textarea id="summary-notes-ru" class="note-textarea hidden" placeholder="Сделать заметки на русском..."></textarea>
+                    
+                    <div class="note-controls">
+                        <button class="note-btn save-btn" data-section="summary" data-lang="en">Save Notes</button>
+                        <button class="note-btn download-btn" data-section="summary" data-lang="en">Download Notes</button>
+                        <button class="note-btn clear-btn" data-section="summary" data-lang="en">Clear Notes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>ALS 863: Introduction to Sociocultural Linguistics | University of [Your Institution]</p>
+        <p>Based on research from UNESCO, ScienceDirect, and the National Institutes of Health</p>
+        <p class="multilingual-tip" style="margin-top: 10px; padding: 10px; background: #fff8e6; border: 1px dashed #ffc107; border-radius: 6px;">
+            <strong>Language Note:</strong> Take notes in your preferred language! This platform supports multilingual note-taking for all sections.
+        </p>
+    </div>
 
+    <script>
+        // Section toggling
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Find the corresponding tab and activate it
+            const activeTab = Array.from(tabs).find(tab => 
+                tab.textContent.toLowerCase().includes(sectionId)
+            );
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+            
+            // Load saved notes for the active section
+            loadNotesForSection(sectionId);
+        }
+        
+        // Language switching for notes
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                const section = this.closest('.notes-section').getAttribute('data-section');
+                const currentSection = this.closest('.section');
+                
+                // Update active language button
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show the correct textarea for the selected language
+                document.querySelectorAll('.note-textarea').forEach(textarea => {
+                    textarea.classList.add('hidden');
+                });
+                
+                const activeTextarea = document.getElementById(`${section}-notes-${lang}`);
+                if (activeTextarea) {
+                    activeTextarea.classList.remove('hidden');
+                }
+                
+                // Update save/download buttons with current language
+                const saveBtn = currentSection.querySelector('.save-btn');
+                const downloadBtn = currentSection.querySelector('.download-btn');
+                const clearBtn = currentSection.querySelector('.clear-btn');
+                
+                saveBtn.setAttribute('data-lang', lang);
+                downloadBtn.setAttribute('data-lang', lang);
+                clearBtn.setAttribute('data-lang', lang);
+                
+                // Load notes for this language
+                loadNotesForSection(section, lang);
+            });
+        });
+        
+        // Save notes to localStorage
+        document.querySelectorAll('.save-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const section = this.getAttribute('data-section');
+                const lang = this.getAttribute('data-lang');
+                const textarea = document.getElementById(`${section}-notes-${lang}`);
+                
+                if (textarea) {
+                    localStorage.setItem(`${section}-notes-${lang}`, textarea.value);
+                    alert(`Notes saved for ${section} in ${lang}!`);
+                }
+            });
+        });
+        
+        // Download notes as text file
+        document.querySelectorAll('.download-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const section = this.getAttribute('data-section');
+                const lang = this.getAttribute('data-lang');
+                const textarea = document.getElementById(`${section}-notes-${lang}`);
+                
+                if (textarea && textarea.value) {
+                    const blob = new Blob([textarea.value], {type: 'text/plain'});
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `${section}-notes-${lang}.txt`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }
+            });
+        });
+        
+        // Clear notes
+        document.querySelectorAll('.clear-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const section = this.getAttribute('data-section');
+                const lang = this.getAttribute('data-lang');
+                const textarea = document.getElementById(`${section}-notes-${lang}`);
+                
+                if (textarea) {
+                    textarea.value = '';
+                    localStorage.removeItem(`${section}-notes-${lang}`);
+                }
+            });
+        });
+        
+        // Load notes from localStorage
+        function loadNotesForSection(section, lang = 'en') {
+            const textarea = document.getElementById(`${section}-notes-${lang}`);
+            if (textarea) {
+                const savedNotes = localStorage.getItem(`${section}-notes-${lang}`);
+                if (savedNotes) {
+                    textarea.value = savedNotes;
+                }
+            }
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load notes for active section
+            const activeSection = document.querySelector('.section.active').id;
+            loadNotesForSection(activeSection);
+            
+            // Initialize language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.closest('.language-selector').querySelector('.lang-btn.active')?.classList.remove('active');
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
