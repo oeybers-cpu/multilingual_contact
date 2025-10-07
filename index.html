@@ -172,7 +172,7 @@
         
         textarea {
             width: 100%;
-            height: 150px;
+            height: 200px;
             padding: 15px;
             border: 1px solid #ced4da;
             border-radius: 8px;
@@ -298,31 +298,23 @@
             color: #00008B;
         }
         
-        .language-selector {
+        .language-indicator {
             display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: #555;
         }
         
-        .lang-btn {
-            padding: 6px 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background: white;
-            cursor: pointer;
-            font-size: 0.85rem;
+        .language-indicator .flag {
+            width: 20px;
+            height: 15px;
+            border-radius: 2px;
         }
         
-        .lang-btn.active {
-            background: #00008B;
-            color: white;
-            border-color: #00008B;
-        }
-        
-        .lang-selector-container {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 15px;
+        .language-indicator .language-name {
+            font-weight: 500;
         }
     </style>
 </head>
@@ -351,7 +343,7 @@
             </button>
             <div class="multilingual-tip" style="margin-top: 20px; padding: 15px;">
                 <h4>Multilingual Note-Taking Tip</h4>
-                <p>Take notes in your preferred language! Our system supports multilingual notes. Use the language selector to switch between languages while taking notes.</p>
+                <p>Type notes in any language you prefer! Our system automatically detects your language and allows you to save and download notes in their original form.</p>
             </div>
         </div>
         
@@ -379,28 +371,16 @@
                 </div>
                 
                 <div class="notes-section">
-                    <div class="lang-selector-container">
-                        <div class="language-selector">
-                            <button class="lang-btn active" data-lang="en">English</button>
-                            <button class="lang-btn" data-lang="es">Español</button>
-                            <button class="lang-btn" data-lang="fr">Français</button>
-                            <button class="lang-btn" data-lang="zh">中文</button>
-                            <button class="lang-btn" data-lang="ar">العربية</button>
-                            <button class="lang-btn" data-lang="ru">Русский</button>
-                        </div>
-                    </div>
                     <h3>Notes for Cognitive Benefits</h3>
-                    <textarea id="cognitive-notes-en" class="note-textarea" placeholder="Take notes in English..."></textarea>
-                    <textarea id="cognitive-notes-es" class="note-textarea hidden" placeholder="Tomar notas en español..."></textarea>
-                    <textarea id="cognitive-notes-fr" class="note-textarea hidden" placeholder="Prendre des notes en français..."></textarea>
-                    <textarea id="cognitive-notes-zh" class="note-textarea hidden" placeholder="用中文记笔记..."></textarea>
-                    <textarea id="cognitive-notes-ar" class="note-textarea hidden" placeholder="خذ ملاحظات بالعربية..."></textarea>
-                    <textarea id="cognitive-notes-ru" class="note-textarea hidden" placeholder="Сделать заметки на русском..."></textarea>
-                    
+                    <textarea id="cognitive-notes" class="note-textarea" placeholder="Type your notes in any language..."></textarea>
+                    <div class="language-indicator">
+                        <span class="flag" style="background: #f0f0f0;"></span>
+                        <span class="language-name" id="cognitive-language">Language: Detecting...</span>
+                    </div>
                     <div class="note-controls">
-                        <button class="note-btn save-btn" data-section="cognitive" data-lang="en">Save Notes</button>
-                        <button class="note-btn download-btn" data-section="cognitive" data-lang="en">Download Notes</button>
-                        <button class="note-btn clear-btn" data-section="cognitive" data-lang="en">Clear Notes</button>
+                        <button class="note-btn save-btn" data-section="cognitive">Save Notes</button>
+                        <button class="note-btn download-btn" data-section="cognitive">Download Notes</button>
+                        <button class="note-btn clear-btn" data-section="cognitive">Clear Notes</button>
                     </div>
                 </div>
             </div>
@@ -427,28 +407,16 @@
                 </div>
                 
                 <div class="notes-section">
-                    <div class="lang-selector-container">
-                        <div class="language-selector">
-                            <button class="lang-btn active" data-lang="en">English</button>
-                            <button class="lang-btn" data-lang="es">Español</button>
-                            <button class="lang-btn" data-lang="fr">Français</button>
-                            <button class="lang-btn" data-lang="zh">中文</button>
-                            <button class="lang-btn" data-lang="ar">العربية</button>
-                            <button class="lang-btn" data-lang="ru">Русский</button>
-                        </div>
-                    </div>
                     <h3>Notes for Cross-Cultural Communication</h3>
-                    <textarea id="cross-cultural-notes-en" class="note-textarea" placeholder="Take notes in English..."></textarea>
-                    <textarea id="cross-cultural-notes-es" class="note-textarea hidden" placeholder="Tomar notas en español..."></textarea>
-                    <textarea id="cross-cultural-notes-fr" class="note-textarea hidden" placeholder="Prendre des notes en français..."></textarea>
-                    <textarea id="cross-cultural-notes-zh" class="note-textarea hidden" placeholder="用中文记笔记..."></textarea>
-                    <textarea id="cross-cultural-notes-ar" class="note-textarea hidden" placeholder="خذ ملاحظات بالعربية..."></textarea>
-                    <textarea id="cross-cultural-notes-ru" class="note-textarea hidden" placeholder="Сделать заметки на русском..."></textarea>
-                    
+                    <textarea id="cross-cultural-notes" class="note-textarea" placeholder="Type your notes in any language..."></textarea>
+                    <div class="language-indicator">
+                        <span class="flag" style="background: #f0f0f0;"></span>
+                        <span class="language-name" id="cross-cultural-language">Language: Detecting...</span>
+                    </div>
                     <div class="note-controls">
-                        <button class="note-btn save-btn" data-section="cross-cultural" data-lang="en">Save Notes</button>
-                        <button class="note-btn download-btn" data-section="cross-cultural" data-lang="en">Download Notes</button>
-                        <button class="note-btn clear-btn" data-section="cross-cultural" data-lang="en">Clear Notes</button>
+                        <button class="note-btn save-btn" data-section="cross-cultural">Save Notes</button>
+                        <button class="note-btn download-btn" data-section="cross-cultural">Download Notes</button>
+                        <button class="note-btn clear-btn" data-section="cross-cultural">Clear Notes</button>
                     </div>
                 </div>
             </div>
@@ -475,28 +443,16 @@
                 </div>
                 
                 <div class="notes-section">
-                    <div class="lang-selector-container">
-                        <div class="language-selector">
-                            <button class="lang-btn active" data-lang="en">English</button>
-                            <button class="lang-btn" data-lang="es">Español</button>
-                            <button class="lang-btn" data-lang="fr">Français</button>
-                            <button class="lang-btn" data-lang="zh">中文</button>
-                            <button class="lang-btn" data-lang="ar">العربية</button>
-                            <button class="lang-btn" data-lang="ru">Русский</button>
-                        </div>
-                    </div>
                     <h3>Notes for Sociocultural Relevance</h3>
-                    <textarea id="sociocultural-notes-en" class="note-textarea" placeholder="Take notes in English..."></textarea>
-                    <textarea id="sociocultural-notes-es" class="note-textarea hidden" placeholder="Tomar notas en español..."></textarea>
-                    <textarea id="sociocultural-notes-fr" class="note-textarea hidden" placeholder="Prendre des notes en français..."></textarea>
-                    <textarea id="sociocultural-notes-zh" class="note-textarea hidden" placeholder="用中文记笔记..."></textarea>
-                    <textarea id="sociocultural-notes-ar" class="note-textarea hidden" placeholder="خذ ملاحظات بالعربية..."></textarea>
-                    <textarea id="sociocultural-notes-ru" class="note-textarea hidden" placeholder="Сделать заметки на русском..."></textarea>
-                    
+                    <textarea id="sociocultural-notes" class="note-textarea" placeholder="Type your notes in any language..."></textarea>
+                    <div class="language-indicator">
+                        <span class="flag" style="background: #f0f0f0;"></span>
+                        <span class="language-name" id="sociocultural-language">Language: Detecting...</span>
+                    </div>
                     <div class="note-controls">
-                        <button class="note-btn save-btn" data-section="sociocultural" data-lang="en">Save Notes</button>
-                        <button class="note-btn download-btn" data-section="sociocultural" data-lang="en">Download Notes</button>
-                        <button class="note-btn clear-btn" data-section="sociocultural" data-lang="en">Clear Notes</button>
+                        <button class="note-btn save-btn" data-section="sociocultural">Save Notes</button>
+                        <button class="note-btn download-btn" data-section="sociocultural">Download Notes</button>
+                        <button class="note-btn clear-btn" data-section="sociocultural">Clear Notes</button>
                     </div>
                 </div>
             </div>
@@ -524,28 +480,16 @@
                 </div>
                 
                 <div class="notes-section">
-                    <div class="lang-selector-container">
-                        <div class="language-selector">
-                            <button class="lang-btn active" data-lang="en">English</button>
-                            <button class="lang-btn" data-lang="es">Español</button>
-                            <button class="lang-btn" data-lang="fr">Français</button>
-                            <button class="lang-btn" data-lang="zh">中文</button>
-                            <button class="lang-btn" data-lang="ar">العربية</button>
-                            <button class="lang-btn" data-lang="ru">Русский</button>
-                        </div>
-                    </div>
                     <h3>Notes for Educational Context</h3>
-                    <textarea id="education-notes-en" class="note-textarea" placeholder="Take notes in English..."></textarea>
-                    <textarea id="education-notes-es" class="note-textarea hidden" placeholder="Tomar notas en español..."></textarea>
-                    <textarea id="education-notes-fr" class="note-textarea hidden" placeholder="Prendre des notes en français..."></textarea>
-                    <textarea id="education-notes-zh" class="note-textarea hidden" placeholder="用中文记笔记..."></textarea>
-                    <textarea id="education-notes-ar" class="note-textarea hidden" placeholder="خذ ملاحظات بالعربية..."></textarea>
-                    <textarea id="education-notes-ru" class="note-textarea hidden" placeholder="Сделать заметки на русском..."></textarea>
-                    
+                    <textarea id="education-notes" class="note-textarea" placeholder="Type your notes in any language..."></textarea>
+                    <div class="language-indicator">
+                        <span class="flag" style="background: #f0f0f0;"></span>
+                        <span class="language-name" id="education-language">Language: Detecting...</span>
+                    </div>
                     <div class="note-controls">
-                        <button class="note-btn save-btn" data-section="education" data-lang="en">Save Notes</button>
-                        <button class="note-btn download-btn" data-section="education" data-lang="en">Download Notes</button>
-                        <button class="note-btn clear-btn" data-section="education" data-lang="en">Clear Notes</button>
+                        <button class="note-btn save-btn" data-section="education">Save Notes</button>
+                        <button class="note-btn download-btn" data-section="education">Download Notes</button>
+                        <button class="note-btn clear-btn" data-section="education">Clear Notes</button>
                     </div>
                 </div>
             </div>
@@ -567,28 +511,16 @@
                 </div>
                 
                 <div class="notes-section">
-                    <div class="lang-selector-container">
-                        <div class="language-selector">
-                            <button class="lang-btn active" data-lang="en">English</button>
-                            <button class="lang-btn" data-lang="es">Español</button>
-                            <button class="lang-btn" data-lang="fr">Français</button>
-                            <button class="lang-btn" data-lang="zh">中文</button>
-                            <button class="lang-btn" data-lang="ar">العربية</button>
-                            <button class="lang-btn" data-lang="ru">Русский</button>
-                        </div>
-                    </div>
                     <h3>Notes for Summary</h3>
-                    <textarea id="summary-notes-en" class="note-textarea" placeholder="Take notes in English..."></textarea>
-                    <textarea id="summary-notes-es" class="note-textarea hidden" placeholder="Tomar notas en español..."></textarea>
-                    <textarea id="summary-notes-fr" class="note-textarea hidden" placeholder="Prendre des notes en français..."></textarea>
-                    <textarea id="summary-notes-zh" class="note-textarea hidden" placeholder="用中文记笔记..."></textarea>
-                    <textarea id="summary-notes-ar" class="note-textarea hidden" placeholder="خذ ملاحظات بالعربية..."></textarea>
-                    <textarea id="summary-notes-ru" class="note-textarea hidden" placeholder="Сделать заметки на русском..."></textarea>
-                    
+                    <textarea id="summary-notes" class="note-textarea" placeholder="Type your notes in any language..."></textarea>
+                    <div class="language-indicator">
+                        <span class="flag" style="background: #f0f0f0;"></span>
+                        <span class="language-name" id="summary-language">Language: Detecting...</span>
+                    </div>
                     <div class="note-controls">
-                        <button class="note-btn save-btn" data-section="summary" data-lang="en">Save Notes</button>
-                        <button class="note-btn download-btn" data-section="summary" data-lang="en">Download Notes</button>
-                        <button class="note-btn clear-btn" data-section="summary" data-lang="en">Clear Notes</button>
+                        <button class="note-btn save-btn" data-section="summary">Save Notes</button>
+                        <button class="note-btn download-btn" data-section="summary">Download Notes</button>
+                        <button class="note-btn clear-btn" data-section="summary">Clear Notes</button>
                     </div>
                 </div>
             </div>
@@ -633,51 +565,52 @@
             loadNotesForSection(sectionId);
         }
         
-        // Language switching for notes
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const lang = this.getAttribute('data-lang');
-                const section = this.closest('.notes-section').getAttribute('data-section');
-                const currentSection = this.closest('.section');
-                
-                // Update active language button
-                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Show the correct textarea for the selected language
-                document.querySelectorAll('.note-textarea').forEach(textarea => {
-                    textarea.classList.add('hidden');
-                });
-                
-                const activeTextarea = document.getElementById(`${section}-notes-${lang}`);
-                if (activeTextarea) {
-                    activeTextarea.classList.remove('hidden');
-                }
-                
-                // Update save/download buttons with current language
-                const saveBtn = currentSection.querySelector('.save-btn');
-                const downloadBtn = currentSection.querySelector('.download-btn');
-                const clearBtn = currentSection.querySelector('.clear-btn');
-                
-                saveBtn.setAttribute('data-lang', lang);
-                downloadBtn.setAttribute('data-lang', lang);
-                clearBtn.setAttribute('data-lang', lang);
-                
-                // Load notes for this language
-                loadNotesForSection(section, lang);
-            });
-        });
+        // Language detection
+        function detectLanguage(text) {
+            if (!text || text.trim() === '') return 'unknown';
+            
+            // Simple language detection based on common characters
+            const chineseRegex = /[\u4e00-\u9fff]/;
+            const japaneseRegex = /[\u3040-\u30ff\u3400-\u4dbf\u{4e00}-\u{9faf}\u{f900}-\u{faff}\u{2f800}-\u{2fa1f}]/u;
+            const koreanRegex = /[\uac00-\ud7af]/;
+            const arabicRegex = /[\u0600-\u06FF]/;
+            const russianRegex = /[\u0400-\u04FF]/;
+            
+            if (chineseRegex.test(text)) return 'zh';
+            if (japaneseRegex.test(text)) return 'ja';
+            if (koreanRegex.test(text)) return 'ko';
+            if (arabicRegex.test(text)) return 'ar';
+            if (russianRegex.test(text)) return 'ru';
+            if (/[\u00C0-\u017F]/.test(text)) return 'es'; // Common Latin characters with accents
+            return 'en';
+        }
         
         // Save notes to localStorage
         document.querySelectorAll('.save-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const section = this.getAttribute('data-section');
-                const lang = this.getAttribute('data-lang');
-                const textarea = document.getElementById(`${section}-notes-${lang}`);
+                const textarea = document.getElementById(`${section}-notes`);
+                const langIndicator = document.getElementById(`${section}-language`);
                 
                 if (textarea) {
-                    localStorage.setItem(`${section}-notes-${lang}`, textarea.value);
-                    alert(`Notes saved for ${section} in ${lang}!`);
+                    const text = textarea.value;
+                    localStorage.setItem(`${section}-notes`, text);
+                    
+                    // Detect language
+                    const langCode = detectLanguage(text);
+                    let langName = 'Unknown';
+                    switch(langCode) {
+                        case 'zh': langName = 'Chinese'; break;
+                        case 'ja': langName = 'Japanese'; break;
+                        case 'ko': langName = 'Korean'; break;
+                        case 'ar': langName = 'Arabic'; break;
+                        case 'ru': langName = 'Russian'; break;
+                        case 'es': langName = 'Spanish'; break;
+                        case 'en': langName = 'English'; break;
+                    }
+                    
+                    langIndicator.textContent = `Language: ${langName}`;
+                    alert(`Notes saved for ${section}!`);
                 }
             });
         });
@@ -686,15 +619,27 @@
         document.querySelectorAll('.download-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const section = this.getAttribute('data-section');
-                const lang = this.getAttribute('data-lang');
-                const textarea = document.getElementById(`${section}-notes-${lang}`);
+                const textarea = document.getElementById(`${section}-notes`);
                 
                 if (textarea && textarea.value) {
-                    const blob = new Blob([textarea.value], {type: 'text/plain'});
+                    const text = textarea.value;
+                    const langCode = detectLanguage(text);
+                    let langName = 'unknown';
+                    switch(langCode) {
+                        case 'zh': langName = 'chinese'; break;
+                        case 'ja': langName = 'japanese'; break;
+                        case 'ko': langName = 'korean'; break;
+                        case 'ar': langName = 'arabic'; break;
+                        case 'ru': langName = 'russian'; break;
+                        case 'es': langName = 'spanish'; break;
+                        case 'en': langName = 'english'; break;
+                    }
+                    
+                    const blob = new Blob([text], {type: 'text/plain'});
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = url;
-                    a.download = `${section}-notes-${lang}.txt`;
+                    a.download = `${section}-notes-${langName}.txt`;
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
@@ -707,23 +652,43 @@
         document.querySelectorAll('.clear-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const section = this.getAttribute('data-section');
-                const lang = this.getAttribute('data-lang');
-                const textarea = document.getElementById(`${section}-notes-${lang}`);
+                const textarea = document.getElementById(`${section}-notes`);
+                const langIndicator = document.getElementById(`${section}-language`);
                 
                 if (textarea) {
                     textarea.value = '';
-                    localStorage.removeItem(`${section}-notes-${lang}`);
+                    localStorage.removeItem(`${section}-notes`);
+                    langIndicator.textContent = `Language: Detecting...`;
                 }
             });
         });
         
         // Load notes from localStorage
-        function loadNotesForSection(section, lang = 'en') {
-            const textarea = document.getElementById(`${section}-notes-${lang}`);
+        function loadNotesForSection(section) {
+            const textarea = document.getElementById(`${section}-notes`);
+            const langIndicator = document.getElementById(`${section}-language`);
+            
             if (textarea) {
-                const savedNotes = localStorage.getItem(`${section}-notes-${lang}`);
+                const savedNotes = localStorage.getItem(`${section}-notes`);
                 if (savedNotes) {
                     textarea.value = savedNotes;
+                    
+                    // Detect language
+                    const langCode = detectLanguage(savedNotes);
+                    let langName = 'Unknown';
+                    switch(langCode) {
+                        case 'zh': langName = 'Chinese'; break;
+                        case 'ja': langName = 'Japanese'; break;
+                        case 'ko': langName = 'Korean'; break;
+                        case 'ar': langName = 'Arabic'; break;
+                        case 'ru': langName = 'Russian'; break;
+                        case 'es': langName = 'Spanish'; break;
+                        case 'en': langName = 'English'; break;
+                    }
+                    
+                    langIndicator.textContent = `Language: ${langName}`;
+                } else {
+                    langIndicator.textContent = `Language: Detecting...`;
                 }
             }
         }
@@ -734,12 +699,26 @@
             const activeSection = document.querySelector('.section.active').id;
             loadNotesForSection(activeSection);
             
-            // Initialize language buttons
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    this.closest('.language-selector').querySelector('.lang-btn.active')?.classList.remove('active');
-                    this.classList.add('active');
-                });
+            // Add event listeners for all sections
+            const sections = ['cognitive', 'cross-cultural', 'sociocultural', 'education', 'summary'];
+            sections.forEach(section => {
+                const textarea = document.getElementById(`${section}-notes`);
+                if (textarea) {
+                    textarea.addEventListener('input', function() {
+                        const langCode = detectLanguage(textarea.value);
+                        let langName = 'Unknown';
+                        switch(langCode) {
+                            case 'zh': langName = 'Chinese'; break;
+                            case 'ja': langName = 'Japanese'; break;
+                            case 'ko': langName = 'Korean'; break;
+                            case 'ar': langName = 'Arabic'; break;
+                            case 'ru': langName = 'Russian'; break;
+                            case 'es': langName = 'Spanish'; break;
+                            case 'en': langName = 'English'; break;
+                        }
+                        document.getElementById(`${section}-language`).textContent = `Language: ${langName}`;
+                    });
+                }
             });
         });
     </script>
